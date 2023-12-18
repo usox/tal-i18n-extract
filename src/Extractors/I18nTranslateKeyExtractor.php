@@ -8,6 +8,7 @@ use DOMNode;
 use DOMNodeList;
 use DOMXPath;
 use Generator;
+use Usox\TalI18nExtract\Extractor;
 
 final class I18nTranslateKeyExtractor implements ExtractorInterface
 {
@@ -21,7 +22,7 @@ final class I18nTranslateKeyExtractor implements ExtractorInterface
         if ($result instanceof DOMNodeList) {
             /** @var DOMNode $item */
             foreach ($result as $item) {
-                $node = $item->attributes?->getNamedItemNS('http://xml.zope.org/namespaces/i18n', 'translate');
+                $node = $item->attributes?->getNamedItemNS(Extractor::I18N_NAMESPACE, 'translate');
 
                 if ($node !== null) {
                     yield (string) $node->nodeValue;

@@ -7,6 +7,7 @@ namespace Usox\TalI18nExtract\Extractors;
 use DOMNode;
 use DOMXPath;
 use Generator;
+use Usox\TalI18nExtract\Extractor;
 
 final class I18nTranslateEmptyExtractor implements ExtractorInterface
 {
@@ -29,7 +30,7 @@ final class I18nTranslateEmptyExtractor implements ExtractorInterface
                         continue;
                     }
 
-                    $attribute = $childNode->attributes?->getNamedItemNS('http://xml.zope.org/namespaces/i18n', 'name');
+                    $attribute = $childNode->attributes?->getNamedItemNS(Extractor::I18N_NAMESPACE, 'name');
                     if ($attribute !== null) {
                         $tokens[] = sprintf('${%s}', $attribute->nodeValue);
                     }
