@@ -21,7 +21,7 @@ final class I18nTranslateKeyExtractor implements ExtractorInterface
         if ($result instanceof DOMNodeList) {
             /** @var DOMNode $item */
             foreach ($result as $item) {
-                $node = $item->attributes?->getNamedItem('translate');
+                $node = $item->attributes?->getNamedItemNS('http://xml.zope.org/namespaces/i18n', 'translate');
 
                 if ($node !== null) {
                     yield (string) $node->nodeValue;

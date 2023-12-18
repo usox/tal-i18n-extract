@@ -8,6 +8,7 @@ use DOMDocument;
 use DOMXPath;
 use Generator;
 use Usox\TalI18nExtract\Extractors\ExtractorInterface;
+use Usox\TalI18nExtract\Extractors\I18nAttributeExtractor;
 use Usox\TalI18nExtract\Extractors\I18nTranslateEmptyExtractor;
 use Usox\TalI18nExtract\Extractors\I18nTranslateKeyExtractor;
 
@@ -21,6 +22,7 @@ final class Extractor
         $this->extractors = [
             new I18nTranslateKeyExtractor(),
             new I18nTranslateEmptyExtractor(),
+            new I18nAttributeExtractor(),
         ];
     }
 
