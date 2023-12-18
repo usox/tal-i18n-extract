@@ -31,11 +31,12 @@ final class PotWriter
                 fwrite(
                     $stream,
                     <<<MSG
-                        msgid "$line"
-                        msgstr "$line"\n\n
+                        msgid "{$line}"
+                        msgstr "{$line}"\n\n
                         MSG
                 );
             }
+
             $dict[$line] = $line;
         }
 

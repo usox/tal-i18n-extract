@@ -18,7 +18,7 @@ final class Extractor
     public const I18N_NAMESPACE = 'http://xml.zope.org/namespaces/i18n';
 
     /** @var list<ExtractorInterface> */
-    private array $extractors;
+    private readonly array $extractors;
 
     /**
      * @param list<ExtractorInterface>|null $extractors
@@ -67,7 +67,7 @@ final class Extractor
     {
         return htmlspecialchars(
             trim(
-                (string) preg_replace(['/\n/', '/\r/', '/\t/'], [' ', ' ', ''], $value)
+                (string) preg_replace(['/\n/', '/\r/', '/\t/', '/\s\s+/',], [' ', ' ', '', ' ',], $value)
             )
         );
     }
