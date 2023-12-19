@@ -9,9 +9,14 @@ use DOMXPath;
 use Generator;
 use Usox\TalI18nExtract\ExtractorDecorator;
 
+/**
+ * Gets file-paths and returns fully-loaded XPath-objects one-by-one
+ */
 final class FileLoader implements FileLoaderInterface
 {
     /**
+     * Loads every given-file path and return a XPath object
+     *
      * @param iterable<string> $filePaths
      *
      * @return Generator<DOMXPath>
@@ -20,15 +25,13 @@ final class FileLoader implements FileLoaderInterface
         iterable $filePaths
     ): Generator {
         foreach ($filePaths as $path) {
-            $path = (string) realpath($path);
-
             if (!file_exists($path)) {
                 trigger_error('Not existing: '.$path, E_USER_WARNING);
 
                 continue;
             }
 
-            $content = file_get_contents($path);
+            $content = @file_get_contents($path);
             if ($content === false) {
                 trigger_error('Not readable: '.$path, E_USER_WARNING);
 
@@ -43,10 +46,7 @@ final class FileLoader implements FileLoaderInterface
                 continue;
             }
 
-            $xpath = new DOMXPath($dom);
-            $xpath->registerNamespace('i18n', ExtractorDecorator::I18N_NAMESPACE);
-
-            yield $xpath;
+            yield new DOMXPath($dom);
         }
     }
 }

@@ -8,6 +8,8 @@ use Generator;
 interface FileLoaderInterface
 {
     /**
+     * Loads every given-file path and return a XPath object
+     *
      * @param iterable<string> $filePaths
      *
      * @return Generator<DOMXPath>
