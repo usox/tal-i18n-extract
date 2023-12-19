@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+declare(strict_types=1);
+
+use Usox\TalI18nExtract\ExtractorDecorator;
+use Usox\TalI18nExtract\Io\FileLoader;
+use Usox\TalI18nExtract\Io\PotWriter;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$fileLoader = new FileLoader();
+$extractor = new ExtractorDecorator();
+$writer = new PotWriter();
+
+$filePaths = array_slice($argv, 1);
+
+foreach ($fileLoader->read($filePaths) as $xpath) {
+    $writer->write(
+        $extractor->extract($xpath)
+    );
+}

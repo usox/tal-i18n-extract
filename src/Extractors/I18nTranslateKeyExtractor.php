@@ -8,8 +8,13 @@ use DOMNode;
 use DOMNodeList;
 use DOMXPath;
 use Generator;
-use Usox\TalI18nExtract\Extractor;
+use Usox\TalI18nExtract\ExtractorDecorator;
 
+/**
+ * Extracts translation-keys defined as value of i18n:translate-attributes
+ *
+ * e.g. <div i18n:translate="my-translation-key">content</div>
+ */
 final class I18nTranslateKeyExtractor implements ExtractorInterface
 {
     /**
@@ -22,7 +27,7 @@ final class I18nTranslateKeyExtractor implements ExtractorInterface
         if ($result instanceof DOMNodeList) {
             /** @var DOMNode $item */
             foreach ($result as $item) {
-                $node = $item->attributes?->getNamedItemNS(Extractor::I18N_NAMESPACE, 'translate');
+                $node = $item->attributes?->getNamedItemNS(ExtractorDecorator::I18N_NAMESPACE, 'translate');
 
                 if ($node !== null) {
                     yield (string) $node->nodeValue;

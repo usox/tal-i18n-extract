@@ -12,7 +12,7 @@ use Usox\TalI18nExtract\Extractors\I18nAttributeExtractor;
 use Usox\TalI18nExtract\Extractors\I18nTranslateEmptyExtractor;
 use Usox\TalI18nExtract\Extractors\I18nTranslateKeyExtractor;
 
-final class Extractor
+final class ExtractorDecorator implements ExtractorInterface
 {
     /** @var string */
     public const I18N_NAMESPACE = 'http://xml.zope.org/namespaces/i18n';
@@ -50,7 +50,7 @@ final class Extractor
     /**
      * @return Generator<non-empty-string>
      */
-    private function extract(DOMXPath $xpath): Generator
+    public function extract(DOMXPath $xpath): Generator
     {
         foreach ($this->extractors as $extractor) {
             /** @var string $translationKey */
@@ -63,6 +63,11 @@ final class Extractor
         }
     }
 
+    /**
+     * Remove newlines, tabs, multiple whitespaces and such
+     *
+     * Also ensure to encode special html characters
+     */
     private function normalize(string $value): string
     {
         return htmlspecialchars(

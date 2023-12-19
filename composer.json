@@ -1,6 +1,6 @@
 {
     "name": "usox/tal-i18n-extract",
-    "description": "Extractor for tal i18n translation attributes",
+    "description": "Extractor for tal i18n translation attributes (port of perls I18NFool cpan package)",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -24,11 +24,12 @@
         "ext-dom": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5",
-        "phpstan/phpstan": "^1.10",
         "friendsofphp/php-cs-fixer": "^3.41",
+        "mikey179/vfsstream": "^1.6",
         "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan": "^1.10",
         "phpstan/phpstan-strict-rules": "^1",
+        "phpunit/phpunit": "^10.5",
         "rector/rector": "^0.18"
     },
     "config": {
@@ -37,6 +38,7 @@
             "phpstan/extension-installer": true
         }
     },
+    "bin": ["bin/tal-i18n-extract"],
     "scripts": {
         "qa": [
             "@test",
