@@ -53,5 +53,15 @@
         "coverage": "XDEBUG_MODE=coverage phpunit --coverage-html build/coverage tests",
         "rector:dry": "rector process -n",
         "rector:fix": "rector process"
+    },
+    "scripts-descriptions": {
+        "qa": "Run all all qa-related tests",
+        "test": "Run unit-tests",
+        "stan": "Run static analysis",
+        "cs:fix": "Fix code-style issues",
+        "cs:dry": "Check for code-style issues",
+        "coverage": "Generates the code-coverage",
+        "rector:dry": "Check for available code-migrations",
+        "rector:fix": "Apply pending code-migrations"
     }
 }
