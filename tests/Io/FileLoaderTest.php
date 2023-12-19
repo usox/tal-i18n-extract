@@ -43,7 +43,7 @@ class FileLoaderTest extends TestCase
 
     public function testReadFailsIfFileIsNotReadable(): void
     {
-        $file = new vfsStreamFile('snafu', 0000);
+        $file = new vfsStreamFile('snafu', 0o000);
 
         $this->vfsStream->addChild($file);
 

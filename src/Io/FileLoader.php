@@ -7,7 +7,6 @@ namespace Usox\TalI18nExtract\Io;
 use DOMDocument;
 use DOMXPath;
 use Generator;
-use Usox\TalI18nExtract\ExtractorDecorator;
 
 /**
  * Gets file-paths and returns fully-loaded XPath-objects one-by-one
